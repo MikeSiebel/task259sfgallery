@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+## RewriteRule ^(.+)$ index.php?url=$1 [QSA,L] 
+# означает, что все запросы к серверу будут перенаправлены на файл index.php, 
+# и параметр url будет содержать путь к запрашиваемому файлу. 
+# Параметры QSA и L позволяют передавать параметры запроса и прекращать обработку правил.
+
+## RewriteCond %{REQUEST_FILENAME} !-l 
+# означает, что если запрашиваемый файл является символьной ссылкой, то он будет игнорироваться. 
+# Это позволяет избежать риска зацикливания при перенаправлении запросов.
